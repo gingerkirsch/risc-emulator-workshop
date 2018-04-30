@@ -26,88 +26,52 @@ sealed trait Instruction {
 }
 
 object Empty extends Instruction {
-  override def command(address: Int): Unit = moveInstructionPointer
+  override def command(address: Int): Unit = ???
 }
 
 object Read extends Instruction {
-  override def command(address: Int): Unit = {
-    Processor.memory(address) = Executor.read(address)
-    moveInstructionPointer
-  }
+  override def command(address: Int): Unit = ???
 }
 
 object Write extends Instruction {
-  override def command(address: Int): Unit = {
-    Executor.write(Processor.memory(address))
-    moveInstructionPointer
-  }
+  override def command(address: Int): Unit = ???
 }
 
 object Load extends Instruction {
-  override def command(address: Int): Unit = {
-    Processor.accumulatorRegister = Processor.memory(address)
-    moveInstructionPointer
-  }
+  override def command(address: Int): Unit = ???
 }
 
 object Store extends Instruction {
-  override def command(address: Int): Unit  = {
-    Processor.memory(address) = Processor.accumulatorRegister
-    moveInstructionPointer
-  }
+  override def command(address: Int): Unit = ???
 }
 
 object Add extends Instruction {
-  override def command(address: Int): Unit = {
-    Processor.accumulatorRegister = Processor.accumulatorRegister + Processor.memory(address)
-    moveInstructionPointer
-  }
+  override def command(address: Int): Unit = ???
 }
 
 object Sub extends Instruction {
-  override def command(address: Int): Unit = {
-    Processor.accumulatorRegister = Processor.accumulatorRegister - Processor.memory(address)
-    moveInstructionPointer
-  }
+  override def command(address: Int): Unit = ???
 }
 
 object Div extends Instruction {
-  override def command(address: Int): Unit = {
-    if (Processor.memory(address) == 0) {
-      Processor.error = DivisionByZero
-    } else {
-      Processor.accumulatorRegister = Processor.accumulatorRegister / Processor.memory(address)
-      moveInstructionPointer
-    }
-  }
+  override def command(address: Int): Unit = ???
 }
 
 object Mul extends Instruction {
-  override def command(address: Int): Unit = {
-    Processor.accumulatorRegister = Processor.accumulatorRegister * Processor.memory(address)
-    if (Processor.accumulatorRegister > Processor.MaxVal || Processor.accumulatorRegister < Processor.MinVal) {
-      Processor.error = StackOverflow
-    } else moveInstructionPointer
-  }
+  override def command(address: Int): Unit = ???
 }
 
 object Go extends Instruction {
-  override def command(address: Int): Unit = {
-    Processor.instructionPointer = address
-  }
+  override def command(address: Int): Unit = ???
 }
 
 object GoNeg extends Instruction {
-  override def command(address: Int): Unit = {
-    if (Processor.accumulatorRegister < 0) Go.execute(address)
-  }
+  override def command(address: Int): Unit = ???
 }
 
 
 object GoZero extends Instruction {
-  override def command(address: Int): Unit = {
-    if (Processor.accumulatorRegister == 0) Go.execute(address)
-  }
+  override def command(address: Int): Unit = ???
 }
 
 object Halt extends Instruction {

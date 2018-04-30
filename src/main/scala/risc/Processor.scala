@@ -34,35 +34,8 @@ object Processor {
     43 -> Halt,
   )
 
-  def load(program: Array[Int]): Unit = {
-    if (program.length >= Processor.MaxVal)
-      Processor.error = OutOfMemory
-    else {
-      for (i <- memory.indices){
-        if (i < program.size){
-          memory.update(i, program(i))
-        } else {
-          memory.update(i, 0)
-        }
-      }
-      Processor.instructionPointer = 0
-      Processor.accumulatorRegister = 0
-    }
-  }
+  def load(program: Array[Int]): Unit = ???
 
-  def executeInstruction(value: Int): Unit = {
-    value match {
-      case n if n < 0 || n > Processor.MaxVal =>
-        Processor.error = UnknownError
-      case n =>
-        val command = n / 100
-        val operand = n % 100
-        instructionSet.get(command).map { instruction =>
-          instruction.execute(operand)
-        }.getOrElse {
-          error = UnknownInstruction
-        }
-    }
-  }
+  def executeInstruction(value: Int): Unit = ???
 }
 
