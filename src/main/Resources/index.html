@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../Resources/css/main.css" />
+</head>
+<body>
+<h1>RISC emulator</h1>
+<div class="container">
+    <div class="program">
+        <textarea id="listing"></textarea>
+    </div>
+    <div class="toolbox">
+        <fieldset id="read-input-fieldset" class="disabled-input">
+            <div class="input-wrapper">
+                <label for="read-input">Input</label>
+                <input id="read-input"/>
+                <button id="submit-read-input">Submit input</button>
+            </div>
+        </fieldset>
+        <fieldset class="output">
+            <div class="dump">
+                <p id="dumpTextarea"></p>
+            </div>
+            <div class="output">
+                <p id="outputTextarea"></p>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<script>
+    require('./../js/renderer.js')
+</script>
+</body>
+</html>
