@@ -1,0 +1,2 @@
+# scala-scalajs-electron-seed
+
