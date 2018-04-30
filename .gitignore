@@ -1,0 +1,36 @@
+# Scala
+
+*.class
+*.log
+
+# SBT
+
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.history
+.cache
+.lib/
+
+# IntelliJ Idea
+
+*.iml
+*.ipr
+*.iws
+*.idea
+out
+
+# vim
+
+tags
+.*.swp
+.*.swo
+
+# MacOS
+
+.DS_Store
+node_modules
+package-lock.json
