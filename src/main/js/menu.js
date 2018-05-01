@@ -47,7 +47,7 @@ const createMenu = () => {
             submenu: [
                 {
                     label: 'Run',
-                    click: () => { /* add your code for execute run */ }
+                    click: () => events.emit('executeRun')
                 }
             ]
         },

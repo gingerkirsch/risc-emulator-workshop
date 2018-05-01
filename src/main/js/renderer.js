@@ -41,7 +41,7 @@ ipcRenderer.on("fileContentFailed", function (event, fileContent) {
 });
 
 ipcRenderer.on("callRunOnBackend", () => {
-    /* call run on scala backend */
+    BackendApp.run();
 });
 
 ipcRenderer.on("callGetDump", () => {
