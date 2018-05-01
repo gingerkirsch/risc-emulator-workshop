@@ -10,20 +10,11 @@ let currentFilePath = null;
 
 const registerObservers = (mainWindow) => {
     events.on("openHelpWindow", () => {
-        const helpWindow = createHelpWindow();
-        helpWindow.show();
-        helpWindow.on('close', () => console.log("help window closed"))
+        /* implement open help window */
     });
 
-    events.once("loadFile", () => {
-        const fileLocation = selectFileDialog("txt", "file that contains stuff");
-        const selectedFilePath = currentFilePath = fileLocation[0];
-        readFile(selectedFilePath).then(content => {
-            mainWindow.webContents.send("fileContentLoaded", content)
-        }, error => {
-            showDialogMessage("error", "file load failed", "the file could not be loaded " + error.message);
-            mainWindow.webContents.send("fileContentFailed", error)
-        })
+    events.on("loadFile", () => {
+        /* implement loadFile */
     });
 
     events.on("createNewFile", () => {
@@ -31,11 +22,9 @@ const registerObservers = (mainWindow) => {
         currentFilePath = fileLocation;
         updateFile(fileLocation, "").then(content => {
             console.log('successfully create content: ', content);
-            // emittedEvents.emit("fileContentLoaded", content)
             mainWindow.webContents.send("newFileContentCreate", content)
         }, error => {
             console.log('failed to load content error: ', error);
-            // emittedEvents.emit("fileContentFailed", error)
             showDialogMessage("error", "file save failed", "the file could not be saved " + error.message);
             mainWindow.webContents.send("newFileContentFailed", error)
         })
@@ -47,31 +36,20 @@ const registerObservers = (mainWindow) => {
         } else {
             updateFile(currentFilePath, "collect the content").then(content => {
                 console.log('successfully create content: ', content);
-                // emittedEvents.emit("fileContentLoaded", content)
                 mainWindow.webContents.send("newFileContentCreate", content)
             }, error => {
                 console.log('failed to load content error: ', error);
-                // emittedEvents.emit("fileContentFailed", error)
                 mainWindow.webContents.send("newFileContentFailed", error)
             })
         }
     });
 
-    events.once('executeRun', () => {
+    events.on('executeRun', () => {
         mainWindow.webContents.send("callRunOnBackend")
-    })
-
-    events.on('doStep', () => {
-        mainWindow.webContents.send("callDoStepOnBackend")
     })
 
     events.on('getDump', () => {
         mainWindow.webContents.send("callGetDump")
-    })
-
-    events.on('openDumpWindow', () => {
-        const dumpWindow = openDumpWindow()
-        dumpWindow.show()
     })
 
 }

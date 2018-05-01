@@ -8,8 +8,7 @@ let currentAddress;
 const Helper = {
     showReadValueForAddress: (address) => {
         currentAddress = address;
-        debugger;
-            document.getElementById("read-input-fieldset").classList.remove("disabled-input");
+        document.getElementById("read-input-fieldset").classList.remove("disabled-input");
     },
 
     addDebug: (log) => {
@@ -22,12 +21,10 @@ const Helper = {
 
 document.getElementById("submit-read-input").addEventListener("click", (event) => {
     const inputValue = document.getElementById("read-input").value;
-    debugger;
     document.getElementById("read-input").value = "";
     document.getElementById("read-input-fieldset").classList.add("disabled-input");
     event.stopPropagation();
     BackendApp.setReadValue(currentAddress, inputValue);
-    debugger;
 });
 
 
@@ -44,7 +41,7 @@ ipcRenderer.on("fileContentFailed", function (event, fileContent) {
 });
 
 ipcRenderer.on("callRunOnBackend", () => {
-    BackendApp.run();
+    /* call run on scala backend */
 });
 
 ipcRenderer.on("callGetDump", () => {

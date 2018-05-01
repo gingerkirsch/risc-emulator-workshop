@@ -24,7 +24,7 @@ const createMenu = () => {
                 },
                 {
                     label: 'Open',
-                    click: function() { events.emit('loadFile'); }
+                    click: function() { /* add your code for load file */ }
                 },
                 {
                     label: 'Save',
@@ -38,7 +38,7 @@ const createMenu = () => {
             submenu: [
                 {
                     label: 'Help',
-                    click: () => events.emit('openHelpWindow')
+                    click: () => { /* add your code for help window */ }
                 }
             ]
         },
@@ -47,11 +47,7 @@ const createMenu = () => {
             submenu: [
                 {
                     label: 'Run',
-                    click: () => events.emit('executeRun')
-                },
-                {
-                    label: 'Debug / Step',
-                    click: () => events.emit('doStep')
+                    click: () => { /* add your code for execute run */ }
                 }
             ]
         },
