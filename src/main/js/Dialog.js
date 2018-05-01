@@ -1,7 +1,13 @@
 const {dialog} = require("electron");
 
 const selectFileDialog = (extension, name) => {
-    /* implement show open dialog*/
+    return dialog.showOpenDialog({
+                           properties: ['openFile'],
+                           filters: [{
+                               name: name,
+                               extensions: [extension]
+                           }]
+                       })
 };
 
 const saveFileDialog = (extension, name) => {

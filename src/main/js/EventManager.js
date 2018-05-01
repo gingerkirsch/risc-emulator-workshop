@@ -15,8 +15,15 @@ const registerObservers = (mainWindow) => {
         helpWindow.on('close', () => console.log("help window closed"))
     });
 
-    events.on("loadFile", () => {
-        /* implement loadFile */
+    events.once("loadFile", () => {
+        const fileLocation = selectFileDialog("txt", "file that contains stuff");
+        const selectedFilePath = currentFilePath = fileLocation[0];
+        readFile(selectedFilePath).then(content => {
+            mainWindow.webContents.send("fileContentLoaded", content)
+        }, error => {
+            showDialogMessage("error", "file load failed", "the file could not be loaded " + error.message);
+            mainWindow.webContents.send("fileContentFailed", error)
+        })
     });
 
     events.on("createNewFile", () => {

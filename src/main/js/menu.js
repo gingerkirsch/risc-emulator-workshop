@@ -24,7 +24,7 @@ const createMenu = () => {
                 },
                 {
                     label: 'Open',
-                    click: function() { /* add your code for load file */ }
+                    click: function() { events.emit('loadFile'); }
                 },
                 {
                     label: 'Save',
