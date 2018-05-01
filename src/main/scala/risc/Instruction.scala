@@ -33,10 +33,17 @@ object Empty extends Instruction {
 
 object Read extends Instruction {
   override def command(address: Int): Unit = {
-    /* Implement 2 steps for read */
+    Executor.read(address)
   }
 
-  def processResponse(address: Int, value: Int) = ???
+  def processResponse(address: Int, value: Int) = {
+    if (value > Processor.MaxVal || Processor.accumulatorRegister < Processor.MinVal) {
+      Processor.error = StackOverflow
+    } else {
+      Processor.memory(address) = value
+      moveInstructionPointer
+    }
+  }
 }
 
 object Write extends Instruction {
