@@ -38,7 +38,7 @@ const createMenu = () => {
             submenu: [
                 {
                     label: 'Help',
-                    click: () => { /* add your code for help window */ }
+                    click: () => events.emit('openHelpWindow')
                 }
             ]
         },

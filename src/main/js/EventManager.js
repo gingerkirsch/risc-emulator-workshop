@@ -10,7 +10,9 @@ let currentFilePath = null;
 
 const registerObservers = (mainWindow) => {
     events.on("openHelpWindow", () => {
-        /* implement open help window */
+        const helpWindow = createHelpWindow();
+        helpWindow.show();
+        helpWindow.on('close', () => console.log("help window closed"))
     });
 
     events.on("loadFile", () => {
