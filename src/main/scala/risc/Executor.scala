@@ -1,6 +1,6 @@
 package risc
 
-import ui.Helper
+import scala.io.StdIn
 
 trait Executor {
   def output: StringBuilder
@@ -20,12 +20,11 @@ object Executor {
     case e: Error => output.append(s"Error: ${e.message}\n")
   }
 
-  def read(address: Int): Unit = {
-    Helper.showReadValueForAddress(address)
-  }
-
-  def jsCallBack(address: Int, value: Int): Unit = {
-    Read.processResponse(address, value)
+  def read(address: Int): Int = {
+    println("Introduce your value")
+    val input: Int = StdIn.readInt()
+    println(s"Value introduced $input")
+    input
   }
 
   def write(value: Int): StringBuilder = output.append(s"Result: $value\n")

@@ -1,7 +1,5 @@
 package risc
 
-import ui.Helper
-
 sealed trait Instruction {
 
   protected[risc] def command(address:Int): Unit
@@ -19,8 +17,8 @@ sealed trait Instruction {
     if ((Processor.memory(Processor.instructionPointer) / 100) != 43 &&
       Processor.instructionPointer < Processor.memorySize) {
       Processor.instructionPointer = Processor.instructionPointer + 1
-      Helper.addDebug(Executor.getDump)
-      Helper.addOutput(Executor.getOutput)
+      println(Executor.getDump)
+      println(Executor.getOutput)
       Executor.execute()
     }
 
@@ -33,16 +31,8 @@ object Empty extends Instruction {
 
 object Read extends Instruction {
   override def command(address: Int): Unit = {
-    Executor.read(address)
-  }
-
-  def processResponse(address: Int, value: Int) = {
-    if (value > Processor.MaxVal || Processor.accumulatorRegister < Processor.MinVal) {
-      Processor.error = StackOverflow
-    } else {
-      Processor.memory(address) = value
-      moveInstructionPointer
-    }
+    Processor.memory(address) = Executor.read(address)
+    moveInstructionPointer
   }
 }
 
